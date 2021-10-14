@@ -1,0 +1,464 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://raw.githubusercontent.com/slashfoo/lmweb/master/style/latinmodern-mono-light.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: white;
+    --window-border: none;
+    --search-select-bg-color: #575c61;
+    --active-file-bg-color: #f1f4f5;
+    --item-hover-bg-color: #f1f4f5;
+    --item-hover-text-color: black;
+    --control-text-color: #555;
+}
+
+@include-when-export url(https://raw.githubusercontent.com/slashfoo/lmweb/master/style/latinmodern-mono-light.css);
+
+html {
+    font-size: 12pt;
+}
+
+#write {
+    font-family: "STIX2Text", "Times New Roman", "serif";
+    line-height: 1.5em;
+    padding: 10%;
+    padding-top: 5%;
+}
+
+.file-list-item-summary {
+    height: 36px;
+}
+
+.file-list-item {
+    padding-top: 18px !important;
+    padding-bottom: 18px;
+}
+
+#sidebar-loading-template.file-list-item {
+    padding-top: 0 !important;
+}
+
+a, a:visited {
+    color: #a00;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+h1  {
+    font-size: 2.4em;
+}
+
+#write h1  {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+h5  {
+    font-size: 1.1em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+pre, code {
+    font-family: 'Latin Modern Mono Light', "Latin Modern Mono", monospace !important;
+}
+
+.footnotes {
+    display: list-item;
+    margin-left: 1em;
+}
+
+.md-fences {
+    border: 1px solid;
+}
+
+.md-fences.md-fences-with-lineno {
+    border: none;
+}
+
+.CodeMirror-linenumber {
+    color: #333;
+}
+
+*.in-text-selection,
+::selection,
+.CodeMirror-selected {
+    background: var(--search-select-bg-color);
+    color: var(--search-select-text-color) !important;
+    text-shadow: none;
+}
+
+a.md-toc-inner {
+    color: var(--text-color);
+}
+
+.cm-s-typora-default .cm-link {
+    color: #a00;
+    text-decoration: underline;
+}
+
+.cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property {
+    color: black;
+}
+
+#typora-source .CodeMirror-lines {
+    -webkit-font-smoothing: auto;
+    max-width: 1000px;
+}
+
+.md-def-name:before,
+.md-def-name:after {
+    color: #2d2d2d;
+}
+
+sup.md-footnote {
+    background-color: initial;
+    color: inherit;
+}
+
+mark {
+    background: #fff387;
+}
+
+td, th {
+    border: 1px solid;
+    padding-left: 1ch;
+    padding-right: 1ch;
+}
+
+/*table tr[cid]:first-child > td {
+    border-top: 3px double;
+}*/
+
+th {
+    border-bottom: 0;
+    padding-top: 2px;
+    background: #575c61;
+    border-color: #333;
+    color: #f3f3f3;
+}
+
+pre.md-meta-block {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 5px;
+    margin-bottom: 1em;
+}
+
+.task-list-item input:before {
+    content: '\221A';
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.6rem;
+    vertical-align: middle;
+    text-align: center;
+    color: #bbb;
+    background-color: inherit;
+}
+
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before{
+    color: inherit;
+}
+
+.md-task-list-item > input {
+    top: auto;
+    margin-left: -1.1em;
+    font-size: 1.3em;
+    margin-top: 0px;
+    -webkit-appearance: none;
+}
+
+.md-task-list-item input:before {
+    content: '\2610';
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.6rem;
+    vertical-align: middle;
+    text-align: center;
+    color: #bbb;
+    background-color: inherit;
+}
+
+.md-task-list-item input:checked:before,
+.md-task-list-item input[checked]:before{
+    color: inherit;
+    content: '\2611';
+}
+
+.task-list-item {
+    padding-left: 1.5em;
+}
+
+blockquote {
+    font-style: italic;
+    padding: 0.25em 24px;
+    position: relative;
+    color: #383838;
+    border-left: 2px solid;
+    
+}
+
+#write > blockquote {
+    padding: 0.25em 30px;
+    margin-left: -32px;
+    width: calc(100% + 32px);
+}
+
+#write >  .md-fences-with-lineno {
+    margin-left: -33px;
+    color: black;
+}
+
+.CodeMirror-linenumber {
+    min-width: 25px;
+}
+
+.md-header {
+    font-size: inherit !important;
+}
+
+/*blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+}*/
+
+
+
+</style><title>检索</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#1文献部分">1.文献部分</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#11-文献分类及引入格式">1.1 文献分类及引入格式</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#111文献分类">1.1.1文献分类</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#112-参考文献格式">1.1.2 参考文献格式</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#12-常用的文献搜索引擎数据库">1.2 常用的文献搜索引擎/数据库</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#13-从无到有写文章的思路">1.3 从无到有写文章的思路</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2文献管理软件">2.文献管理软件</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#21-常用的文献管理软件及优缺点">2.1 常用的文献管理软件及优缺点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#22-文献管理软件zotero">2.2 文献管理软件Zotero</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#221-基本介绍">2.2.1 基本介绍</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#222-软件安装">2.2.2 软件安装</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#223-如何使用">2.2.3 如何使用</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2231-文献获取与管理">2.2.3.1 文献获取与管理</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2232-文献引用">2.2.3.2 文献引用</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#224-必备插件">2.2.4 必备插件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#225-其他问题汇总">2.2.5 其他问题汇总</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2251-关于zotero翻译器的问题">2.2.5.1 关于zotero翻译器的问题</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2252-关于配置scihub抓取的问题">2.2.5.2 关于配置Scihub抓取的问题</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2253-同步平板等其他设备的问题">2.2.5.3 同步平板等其他设备的问题</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2254-zotero交流互助交流群">2.2.5.4 zotero交流互助交流群</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2255-zotero使用较全的教程">2.2.5.5 zotero使用较全的教程</a></div><ul class="outline-children"></ul></li></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3其他">3.其他</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='1文献部分'><span>1.文献部分</span></h1><h2 id='11-文献分类及引入格式'><span>1.1 文献分类及引入格式</span></h2><h3 id='111文献分类'><span>1.1.1文献分类</span></h3><ul><li><span>SCI (Science Citation Index, 简称</span><strong><span>SCI </span></strong><span>)</span></li><li><span>EI (Engineering Index，简称</span><strong><span>EI</span></strong><span>)</span></li><li><strong><span>CSCD</span></strong><span>、</span><strong><span>北大核心</span></strong><span>、</span><strong><span>科技核心</span></strong></li><li><span>其他（会议论文，毕业论文（硕士、博士毕业论文）等等）</span></li></ul><h3 id='112-参考文献格式'><span>1.1.2 参考文献格式</span></h3><ul><li><p><span>依据所投期刊规定，每个期刊要求略有不同</span></p><blockquote><p><span>我们专业常用的期刊有</span></p><ul><li><span>冰川冻土</span></li><li><span>岩土工程学报</span></li><li><span>岩土力学</span></li><li><span>吉林大学学报（地球科学版）</span></li><li><span>中国公路学报</span></li><li><span>Cold Regions Science and Technology</span></li><li><span>Journal of Hydrolog</span></li><li><span>等等</span></li></ul></blockquote></li><li><p><span>中文期刊格式大致差不多，一般按照国标</span></p><blockquote><p><span>China National Standard GB/T 7714-2015-et</span></p></blockquote></li><li><p><span>实例如下（文献管理软件部分会详解）</span></p><blockquote><p><span>1.L. Boeckli, A. Brenning, S. Gruber, and J. Noetzli. A statistical approach to modelling permafrost distribution in the European Alps or similar mountain ranges[J]. The Cryosphere, 2012, 6(1): 125–140. doi:10.5194/tc-6-125-2012</span></p><p><span>2.周幼吾. 中国冻土[M]. 科学出版社,2000.</span></p><p><span>3.石翔友. 土壤冻融过程未冻水滞后效应实验、模型及机理分析研究[D]. 徐州: 中国矿业大学, 2018.</span></p><p><span>4.A. R. Tice, D. M. Anderson. The prediction of unfrozen water contents on frozen soils from liquid limit determinations[C]. Paris: Transportation Research, 1973.</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/13/20:43:22-image-20211013204320635.png" referrerpolicy="no-referrer" alt="image-20211013204320635"></p></blockquote></li></ul><h2 id='12-常用的文献搜索引擎数据库'><span>1.2 常用的文献搜索引擎/数据库</span></h2><blockquote><p><span>下文只做简单阐述，后面配合文献管理软件做详细演示</span></p></blockquote><ul><li><p><span>知网</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://www.cnki.net/'><span>中国知网 (cnki.net)</span></a></p><p><strong><span>Tips</span></strong><span>：下载PDF文件，只需要油猴添加</span><strong><span>知网下载助手</span></strong><span>脚本</span></p></blockquote></li><li><p><span>万方</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://www.wanfangdata.com.cn/index.html'><span>万方数据知识服务平台 (wanfangdata.com.cn)</span></a></p><p><strong><span>Tips</span></strong><span>：相比知网，万方的优势在于对于硕博学位论文方面，特别是可以通过文献传递方式获取中科院的学位论文（最近近三年的文献不给获取）</span></p></blockquote></li><li><p><span>百度学术</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://xueshu.baidu.com/'><span>百度学术 - 保持学习的态度 (baidu.com)</span></a></p></blockquote></li><li><p><span>谷歌学术</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://scholar.google.com/' target='_blank' class='url'>https://scholar.google.com/</a></p><p><strong><span>Tips</span></strong><span>：最强大的检索引擎，需要科学上网。国内有很多的镜像站点（百度谷歌镜像站点）。</span></p></blockquote></li><li><p><span>SCIHUB</span></p><blockquote><p><strong><span>网址</span></strong><span>：有很多，百度scihub即可，</span><a href='https://www.sci-hub.ren/'><span>Sci-Hub: removing barriers in the way of science</span></a></p><p><strong><span>Tips</span></strong><span>：特别强大，不需要解释。但因某些众所周知的原因，偶尔会不可用。。</span></p></blockquote></li><li><p><span>web of science</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://access.clarivate.com/login?app=wos&amp;alternative=true&amp;shibShireURL=https:%2F%2Fwww.webofknowledge.com%2F%3Fauth%3DShibboleth&amp;shibReturnURL=https:%2F%2Fwww.webofknowledge.com%2F%3FauthCode%3Dnull%26app%3Dwos%26locale%3Dzh-CN&amp;referrer=app%3Dwos%26authCode%3Dnull%26locale%3Dzh-CN&amp;roaming=true'><span>Clarivate</span></a></p><p><strong><span>Tips</span></strong><span>：最全最官方的英文文献数据库，需要连接校园网。</span></p></blockquote></li><li><p><span>ResearchGate</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://www.researchgate.net/'><span>Home Feed | ResearchGate</span></a></p><p><strong><span>Tips</span></strong><span>：有很多学术大佬在上面分享（自动同步）科研成果，学术人玩的社交论坛。</span><a href='https://www.researchgate.net/profile/Wei-Shan-2'><span>Wei Shan | ResearchGate</span></a></p></blockquote></li></ul><h2 id='13-从无到有写文章的思路'><span>1.3 从无到有写文章的思路</span></h2><ul><li><p><span>泛读文献/综述 </span></p><ul><li><span>综述可以给你提供研究方向和思路</span></li><li><span>利用1.2提供的引擎，广泛下载阅读中英文综述</span></li></ul></li><li><p><span>精读目标主题优质文献</span></p><ul><li><span>某一方向的一篇优质文献（</span><strong><span>高被引</span></strong><span>）可以找到很多优质文献（参考文献）</span></li><li><span>精读，做好笔记</span></li></ul></li><li><p><span>设计实验，做实验，分析数据。</span></p></li><li><p><span>写作</span></p><h4 id='中英文工具'><span>中英文工具 </span></h4><ul><li><p><span>中文</span></p><blockquote><ul><li><span>百度学术开题助手</span></li></ul><p><strong><span>网址</span></strong><span>：</span><a href='https://xueshu.baidu.com/u/biye/?tag=paper&amp;fr=ala' target='_blank' class='url'>https://xueshu.baidu.com/u/biye/?tag=paper&fr=ala</a></p></blockquote></li><li><p><span>英文</span></p><blockquote><ul><li><span>connected papers</span></li></ul><p><strong><span>网址</span></strong><span>：</span><a href='https://www.connectedpapers.com/'><span>Connected Papers | Find and explore academic papers</span></a></p></blockquote></li></ul></li></ul><h1 id='2文献管理软件'><span>2.文献管理软件</span></h1><h2 id='21-常用的文献管理软件及优缺点'><span>2.1 常用的文献管理软件及优缺点</span></h2><ul><li><p><span>Zotero</span></p><ul><li><p><span>优点：</span></p><ul><li><span>自动从网页提取Title、Author、Journal、Pages、Date、Vol、No、DOI等信息，免去手动添加，且支持的网站众多，如web of science、IEEE、 Springer、Elsever、Willey等。</span></li><li><span>在数据库权限足够时，自动下载PDF文件，无需手动添加。</span></li><li><span>标签管理与文件夹管理并行。</span></li><li><span>开源免费，开发者团体庞大，扩展功能丰富。</span></li><li><span>DataBase(参考文献信息)在Zotero服务器上不受空间限制。对于Attatched Files(PDF文件等)，Zotero只能免费给你提供300M的空间，但是可独立存储于其他同步盘中，很多同步盘的免费空间足够使用。</span></li><li><span>可为参考文献条目附加丰富的信息，如tag、note、auto、image等等，便于检索。</span></li></ul></li><li><p><span>缺点：因为开源，所以维护人员不固定。文献、插件多了之后，开启可能会有点慢（根据电脑配置）。</span></p></li></ul></li><li><p><span>NoteExpress</span></p><ul><li><span>优点：成熟商用，对中文文献比较友好</span></li><li><span>缺点：对英文文献不太友好</span></li></ul></li><li><p><span>Endnote</span></p><ul><li><span>优点：成熟商用软件</span></li><li><span>缺点：收费，破解版可能有功能无法使用，对电脑性能占用大。</span></li></ul></li><li><p><span>其他：mendeley、知网研学等等</span></p></li></ul><h2 id='22-文献管理软件zotero'><span>2.2 文献管理软件Zotero</span></h2><blockquote><p><span>一个软件用好，揽括全网文献。</span></p></blockquote><h3 id='221-基本介绍'><span>2.2.1 基本介绍</span></h3><p><strong><span>Zotero是一个</span></strong></p><ul><li><span>免费、易用，用来帮助收集、组织、引用和分享研究的文献管理软件</span></li><li><span>可以用来保存参考文献</span></li><li><span>生成所需参考文献格式</span></li><li><span>存储、追踪个人过去研究</span></li></ul><h3 id='222-软件安装'><span>2.2.2 软件安装</span></h3><ul><li><p><span>第一步：访问网址：</span><a href='http://www.zotero.org' target='_blank' class='url'>www.zotero.org</a></p></li><li><p><span>第二步：找到“Download”，点击下载</span><a href='https://www.zotero.org/download/'><span>Zotero | Downloads</span></a></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/10:01:56-image-20211014100155577.png" referrerpolicy="no-referrer" alt="image-20211014100155577"></p></blockquote></li><li><p><span>第三步：下载并安装Zotero程序</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/10:03:40-image-20211014100339691.png" referrerpolicy="no-referrer" alt="image-20211014100339691"><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/10:03:59-image-20211014100358404.png" referrerpolicy="no-referrer" alt="image-20211014100358404"></p></blockquote></li><li><p><span>第四步：安装Zotero的浏览器插件(Zotero Connector) </span><a href='https://www.zotero.org/download/connectors'><span>Zotero | Connectors</span></a><span>，也可通过打开软件工具栏的“工具”-“安装浏览器插件”安装</span></p><blockquote><p><strong><span>Tips</span></strong><span>：仅支持chrome、Firefox、Safari、EDGE</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/10:09:35-image-20211014100934454.png" referrerpolicy="no-referrer" alt="image-20211014100934454"></p></blockquote></li><li><p><span>第五步：检查浏览器插件是否安装成功</span></p><blockquote><p><span>若在浏览器右上角红框里的有“插件”图标，即显示安装成功</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/10:16:32-image-20211014101630921.png" referrerpolicy="no-referrer" alt="image-20211014101630921"></p></blockquote></li><li><p><span>第六步：注册个人你用户，实现文献信息同步</span></p><blockquote><p><strong><span>网址</span></strong><span>：</span><a href='https://www.zotero.org/user/register'><span>Zotero |</span></a></p></blockquote></li><li><p><span>第七步：打开软件工具栏的“编辑”-“首选项”-“高级”-“文件和文件夹”更改数据存储位置(默认在C盘)，实现软件与个人数据库分离。</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:45:15-image-20211014134514783.png" referrerpolicy="no-referrer" alt="image-20211014134514783"><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:45:54-image-20211014134553745.png" referrerpolicy="no-referrer" alt="image-20211014134553745"></p></blockquote></li><li><p><span>第七步：扩展插件安装</span></p><ul><li><span>打开软件工具栏的“工具”-“插件”安装</span></li><li><span>需要提前下载好插件文件</span></li></ul><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/11:35:28-image-20211014113526919.png" referrerpolicy="no-referrer" alt="image-20211014113526919"></p></blockquote><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/11:35:54-image-20211014113553534.png" referrerpolicy="no-referrer" alt="image-20211014113553534"></p></blockquote></li></ul><h3 id='223-如何使用'><span>2.2.3 如何使用</span></h3><h4 id='2231-文献获取与管理'><span>2.2.3.1 文献获取与管理</span></h4><ul><li><p><span>通过文献DOI批量获取文献信息和PDF文件</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/14:07:59-image-20211014140758045.png" referrerpolicy="no-referrer" alt="image-20211014140758045"></p></blockquote></li><li><p><span>通过浏览器批量保存文献信息及PDF文件</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/14:13:37-image-20211014141336635.png" referrerpolicy="no-referrer" alt="image-20211014141336635"></p></blockquote></li><li><p><span>下载PDF文件，链接Zotero文献信息</span></p><blockquote><p><span>大部分的文献都可以找到对应的PDF文件，但是也有数据库权限不够的时候，也就找不到PDF文件。如果通过其他途径找到了PDF文件，可以链接到 Zotero 的文献信息，下面是一个示例。</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/14:16:36-image-20211014141635519.png" referrerpolicy="no-referrer" alt="image-20211014141635519"></p></blockquote></li></ul><p>&nbsp;</p><h4 id='2232-文献引用'><span>2.2.3.2 文献引用</span></h4><ul><li><p><span>第一步：安装需要的参考文献格式</span></p><blockquote><ul><li><span>方法一：首选项-引用-获取更多样式，即可获取对应期刊的参考文献格式</span></li></ul><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:49:16-image-20211014134915799.png" referrerpolicy="no-referrer" alt="image-20211014134915799"></p><ul><li><p><span>方法二：下载好csl文件直接找到Zotero个人资料库中的</span><code>styles</code><span>文件夹放进去即可</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:55:15-image-20211014135514618.png" referrerpolicy="no-referrer" alt="image-20211014135514618"></p></li><li><p><span>备注：目前中文cls最好用的如下点击连接下载</span></p></li></ul></blockquote></li><li><p><span>第二步：打开word文档，选择Zotero栏</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:56:47-image-20211014135646689.png" referrerpolicy="no-referrer" alt="image-20211014135646689"></p></blockquote></li><li><p><span>第三步：点击Add/Edit Citation按钮引用文献</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:58:11-image-20211014135810719.png" referrerpolicy="no-referrer" alt="image-20211014135810719">
+<img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/13:58:42-image-20211014135841482.png" referrerpolicy="no-referrer" alt="image-20211014135841482"></p></blockquote></li><li><p><span>第四步，点击Add/Edit Bibliography 按钮即可</span></p><blockquote><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/14:00:25-image-20211014140024510.png" referrerpolicy="no-referrer" alt="image-20211014140024510">
+<img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/14:00:49-image-20211014140048071.png" referrerpolicy="no-referrer" alt="image-20211014140048071"></p></blockquote></li></ul><h3 id='224-必备插件'><span>2.2.4 必备插件</span></h3><ul><li><p><span>茉莉花jasminum</span></p><blockquote><p><span>zotero中文抓取必备插件，由民间大神制作维护。需要连接校园网或校园VPN代理使用。否则无法抓取PDF文件。</span></p><p><a href='https://github.com/l0o0/jasminum'><span>GitHub - l0o0/jasminum: A Zotero add-on to retrive CNKI meta data. 一个简单的Zotero 插件，用于识别中文元数据</span></a></p></blockquote></li><li><p><span>zotFile</span></p><blockquote><p><span>必须安装，不做过多介绍，参考本文2.2.5-5 第9.10 个视频</span></p></blockquote></li><li><p><span>其他插件</span></p><ul><li><span>markdown：用Zotero 写笔记用，用的很少。</span></li></ul></li></ul><p>&nbsp;</p><h3 id='225-其他问题汇总'><span>2.2.5 其他问题汇总</span></h3><h4 id='2251-关于zotero翻译器的问题'><span>2.2.5.1 关于zotero翻译器的问题</span></h4><blockquote><p><span>翻译器是zotero绕不开的问题，如果需要抓取的网站架构发生改变而翻译器没有更新，就无法正常的抓取条目及信息。目前使用比较稳定，我已经一年多没有更新翻译器，仍然对使用没有影响。</span></p><p><span>zotero大部分网站的翻译器是网友维护，官方提供了Javascript的接口，如果会编程可以自己写翻译器。</span></p><p><span>下面附上翻译器官方更新网站：</span><a href='https://github.com/zotero/translators/tree/250e680d12b002e92ec5acdf174eccf5b2c9892a'><span>GitHub - zotero/translatorsat250e680d12b002e92ec5acdf174eccf5b2c9892a</span></a></p><p><span>翻译器更新教程：</span><a href='https://www.bilibili.com/video/BV1F54y1k73n/'><span>Zotero 更新 知网Translator 翻译器教程</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></p></blockquote><h4 id='2252-关于配置scihub抓取的问题'><span>2.2.5.2 关于配置Scihub抓取的问题</span></h4><blockquote><p><span>Zotero自带的链接网站数据库资源太少，因此改为Scihub抓取。配置教程如下：</span></p><p><a href='https://mp.weixin.qq.com/s/bywFy1xCso7bFexoe6Dmmw'><span>SciHub归来！问题来了：一个月前的论文能下载不？ (qq.com)</span></a></p></blockquote><h4 id='2253-同步平板等其他设备的问题'><span>2.2.5.3 同步平板等其他设备的问题</span></h4><blockquote><p><span>关于同步这块，最方便的就是把Zotero个人资料库拷贝U盘。iapd 端用papership软件。</span></p><p><a href='https://mp.weixin.qq.com/s?__biz=MzAxNzgyMDg0MQ==&amp;mid=2650456887&amp;idx=2&amp;sn=f33a0a4461ee915e1c8f9880066cab68&amp;chksm=83d1def1b4a657e7d9d7c18062dbb1977725e9a891294b686379311d71d9fcf1beac81e168bb&amp;scene=178&amp;cur_album_id=1319074508795641857#rd'><span>详解【Zotero+PaperShip+坚果云】文献生态的同步机制！ (qq.com)</span></a></p></blockquote><h4 id='2254-zotero交流互助交流群'><span>2.2.5.4 zotero交流互助交流群</span></h4><blockquote><p><span>这个群是Zotore中文抓取插件茉莉花的制作者建立的交流群。关于Zotero使用方面有不懂得可以加群咨询。</span></p><p><img src="https://liu-tuchuang.oss-cn-beijing.aliyuncs.com/typoraimg/2021/10/14/15:42:51-image-20211014154249884.png" referrerpolicy="no-referrer" alt="image-20211014154249884"></p></blockquote><h4 id='2255-zotero使用较全的教程'><span>2.2.5.5 zotero使用较全的教程</span></h4><blockquote><ul><li><span>B站up主：</span><strong><span>Struggle_with_me</span></strong></li><li><a href='https://www.bilibili.com/video/BV1cJ411h77k?spm_id_from=333.999.0.0'><span>Zotero | 01-为什么要用文献管理软件Zotero</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1aJ411p7Y3/?spm_id_from=333.788.recommend_more_video.-1'><span>Zotero | 02-如何set up你的zotero</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1vJ411p7Q5/?spm_id_from=333.788.recommend_more_video.-1'><span>Zotero | 03-如何同步你的Zotero账号</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1V7411i7LR/?spm_id_from=333.788.recommend_more_video.-1'><span>Zotero | 04-如何在Zotero中添加条目</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV187411r78J/?spm_id_from=333.788.recommend_more_video.-1'><span>Zotero | 05-如何使用Zotero在Word中插入参考文献</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1K7411p75F?spm_id_from=333.999.0.0'><span>Zotero | 06-如何在LaTeX写作中使用Zotero（Better-BibTeX的使用）</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1B7411p7T5?spm_id_from=333.999.0.0'><span>Zotero | 07-如何使用Better BibTeX实现文献信息文件自动更新</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1X7411L769?spm_id_from=333.999.0.0'><span>Zotero | 08-如何组团刷论文（Zotero的群组功能）</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1wp4y1y72T?spm_id_from=333.999.0.0'><span>Zotero | 09-如何使用ZotFile管理pdf附件（上）</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV17Q4y1K79j?spm_id_from=333.999.0.0'><span>Zotero | 10-如何使用ZotFile管理pdf附件（下）</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><a href='https://www.bilibili.com/video/BV1pz411B7gk?spm_id_from=333.999.0.0'><span>Zotero | 11-Zotero文献管理tips</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><span>微信公众号：青柠学术</span></li><li><a href='https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;__biz=MzAxNzgyMDg0MQ==&amp;scene=1&amp;album_id=1319074508795641857&amp;count=3&amp;uin=&amp;key=&amp;devicetype=Windows+10+x64&amp;version=63030532&amp;lang=zh_CN&amp;ascene=1&amp;fontgear=2'><span>#Zotero文献生态 (qq.com)</span></a></li></ul></blockquote><h1 id='3其他'><span>3.其他</span></h1><ul><li><p><span>书籍查找</span></p><ul><li><span>详情见书籍查找教程</span></li><li><a href='https://mrliuwbs.github.io/bookfind.github.io/' target='_blank' class='url'>https://mrliuwbs.github.io/bookfind.github.io/</a></li></ul><p>&nbsp;</p></li><li><p><span>补充</span></p><ul><li><a href='https://www.icourse163.org/'><span>中国大学MOOC(慕课)_国家精品课程在线学习平台 (icourse163.org)</span></a></li><li><a href='https://www.bilibili.com/'><span>哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</span></a></li><li><span>b站up主：</span><a href='https://space.bilibili.com/70939890/?spm_id_from=333.999.0.0'><span>罗夕夕博士的个人空间</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li><li><span>b站up主：</span><a href='https://space.bilibili.com/694438018/?spm_id_from=333.999.0.0'><span>中南渣渣博士僧N多的个人空间</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></li></ul><p>&nbsp;</p></li></ul><p>&nbsp;</p><p>&nbsp;</p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>
